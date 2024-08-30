@@ -70,24 +70,22 @@ It's recommended to use a virtual environment to manage the project's dependenci
 
 On Windows:
 
-bash
-Copy code
+Copy code:
 python -m venv ids-env
 ids-env\Scripts\activate
+
 On macOS/Linux:
 
-bash
-Copy code
+Copy code:
 python3 -m venv ids-env
 source ids-env/bin/activate
+
 3. Install the Dependencies
-bash
-Copy code
+Copy code:
 pip install -r requirements.txt
 Running the Project
 Once the virtual environment is active, you can start the IDS by running:
 
-bash
 Copy code
 python main.py
 The IDS will start capturing network traffic and analyzing it in real-time.
