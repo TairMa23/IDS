@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סיכומי תנועה - מערכת גילוי חדירות</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        #traffic-summary {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6ffe6;
+            border-radius: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        #loading, #error {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #error {
+            color: red;
+        }
+        .summary-entry {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        function fetchTrafficSummary() {
+            let summaryContainer = document.getElementById('traffic-summary');
+            let loadingElement = document.getElementById('loading');
+            let errorElement = document.getElementById('error');
+
+            loadingElement.style.display = 'block';
+            errorElement.style.display = 'none';
+            summaryContainer.innerHTML = '';
+
+            fetch('/api/traffic_summary')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    loadingElement.style.display = 'none';
+                    summaryContainer.innerHTML = '<h2>סיכום תנועה</h2>';
+                    if (Object.keys(data).length === 0) {
+                        summaryContainer.innerHTML += '<p>אין נתוני תנועה זמינים כרגע.</p>';
+                    } else {
+                        for (let [ip, count] of Object.entries(data)) {
+                            let summaryEntry = document.createElement('div');
+                            summaryEntry.className = 'summary-entry';
+                            summaryEntry.textContent = `IP: ${ip}, מספר חבילות: ${count}`;
+                            summaryContainer.appendChild(summaryEntry);
+                        }
+                    }
+                })
+                .catch(error => {
+                    loadingElement.style.display = 'none';
+                    errorElement.textContent = 'שגיאה בטעינת הנתונים: ' + error.message;
+                    errorElement.style.display = 'block';
+                    console.error('Error:', error);
+                });
+        }
+
+        setInterval(fetchTrafficSummary, 10000);
+
+        window.onload = function() {
+            fetchTrafficSummary();
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>סיכומי תנועה - מערכת גילוי חדירות</h1>
+        <a href="/" class="button">חזרה לדף הראשי</a>
+        <div id="loading" style="display: none;">טוען נתונים...</div>
+        <div id="error" style="display: none;"></div>
+        <div id="traffic-summary">
+            <!-- סיכומי תנועה יוכנסו כאן -->
+        </div>
+    </div>
+</body>
+</html>
