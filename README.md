@@ -1,124 +1,36 @@
 # Intrusion Detection System (IDS)
 
-This project is a basic Intrusion Detection System (IDS) that monitors network traffic for suspicious activity and generates alerts based on predefined rules. It captures and analyzes network packets, identifies suspicious patterns such as port scanning and unusual traffic volume, and logs or displays alerts in a simple web interface.
-
-## Table of Contents
-
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Setup and Installation](#setup-and-installation)
-- [Running the Project](#running-the-project)
-- [User Interface](#user-interface)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
+This project is a network traffic monitoring and alert system built using Flask and Scapy. It captures network packets, analyzes them for suspicious activities, and logs alerts if any anomalies are detected. The application includes a web interface for viewing logs and traffic summaries.
 
 ## Features
 
-- **Network Packet Capturing**: Capture and parse network packets in real-time.
-- **Traffic Analysis**: Detect suspicious patterns using predefined rules.
-- **Alert Generation**: Log and display alerts when suspicious activity is detected.
-- **User Interface**: Simple web interface built with Flask to view alerts and traffic summaries.
-- **Continuous Monitoring**: The IDS continuously captures and processes network traffic.
+- **Packet Capturing**: Captures network packets and processes them for various types of network threats.
+- **Port Scan Detection**: Identifies potential port scanning activities.
+- **SQL Injection Detection**: Detects attempts to exploit SQL injection vulnerabilities.
+- **XSS Detection**: Identifies potential Cross-Site Scripting (XSS) attacks.
+- **Alert Logging**: Logs detected threats along with packet summaries to a log file.
+- **Web Interface**: Provides a web interface to view logs and traffic summaries.
 
-## Project Structure
-
-# Intrusion Detection System (IDS)
-
-This project is a basic Intrusion Detection System (IDS) that monitors network traffic for suspicious activity and generates alerts based on predefined rules. It captures and analyzes network packets, identifies suspicious patterns such as port scanning and unusual traffic volume, and logs or displays alerts in a simple web interface.
-
-## Table of Contents
-
-- [Features](#features)
-- [Project Structure](#project-structure)
-- [Setup and Installation](#setup-and-installation)
-- [Running the Project](#running-the-project)
-- [User Interface](#user-interface)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Features
-
-- **Network Packet Capturing**: Capture and parse network packets in real-time.
-- **Traffic Analysis**: Detect suspicious patterns using predefined rules.
-- **Alert Generation**: Log and display alerts when suspicious activity is detected.
-- **User Interface**: Simple web interface built with Flask to view alerts and traffic summaries.
-- **Continuous Monitoring**: The IDS continuously captures and processes network traffic.
-
-## Project Structure
-
-```bash
-ids_project/
-├── ids-env/                # Virtual environment (created after setup)
-├── static/                 # Static files (CSS, JS, images)
-│   └── style.css           # Basic styling for the web interface
-├── templates/              # HTML templates for Flask
-│   └── index.html          # Main web interface page
-├── main.py                 # Entry point for the project
-├── ids.py                  # Core IDS functionality
-├── requirements.txt        # Python dependencies
-└── README.md               # Project documentation (this file)
-Setup and Installation
-1. Clone the Repository
-bash
-Copy code
+## Installation
+**Clone the Repository**
 git clone https://github.com/yourusername/ids_project.git
 cd ids_project
-2. Create and Activate a Virtual Environment
-It's recommended to use a virtual environment to manage the project's dependencies:
 
-On Windows:
+**Set Up a Virtual Environment (Optional but recommended):**
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-Copy code:
-python -m venv ids-env
-ids-env\Scripts\activate
-
-On macOS/Linux:
-
-Copy code:
-python3 -m venv ids-env
-source ids-env/bin/activate
-
-3. Install the Dependencies
-Copy code:
+**Install Dependencies:**
 pip install -r requirements.txt
-Running the Project
-Once the virtual environment is active, you can start the IDS by running:
+## Configuration
+1. Update Credentials:
+- Edit the app/routes.py file to set the ADMIN_USERNAME and ADMIN_PASSWORD as needed.
+2. Secret Key:
+- Update app.secret_key with a secure key for session management.
 
-Copy code
+## Running the Application
 python main.py
-The IDS will start capturing network traffic and analyzing it in real-time.
 
-User Interface
-To view the alerts and traffic summaries, open your web browser and navigate to:
-
-arduino
-Copy code
-http://localhost:5000
-Here you will find a simple interface displaying the alerts generated by the IDS.
-
-Testing
-To run unit tests for the critical components of the IDS, use the following command:
-
-bash
-Copy code
-python -m unittest discover tests/
-Contributing
-If you'd like to contribute to this project, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for more information.
-
-
-### הסברים:
-- **Features**: מפרט את הפיצ'רים של הפרויקט.
-- **Project Structure**: מתאר את מבנה הפרויקט.
-- **Setup and Installation**: מסביר איך להגדיר ולהתקין את הפרויקט.
-- **Running the Project**: מתאר איך להפעיל את הפרויקט.
-- **User Interface**: מסביר איך לגשת לממשק המשתמש.
-- **Testing**: מכיל הסבר על בדיקות יחידה.
-- **Contributing**: הנחיות לתרומה לפרויקט.
-- **License**: מפרט את סוג הרישיון של הפרויקט. 
-
-כשמישהו יוריד את הפרויקט שלך ויקרא את ה-README, הוא יוכל להגדיר ולהפעיל אותו בצורה מסודרת וברורה.
+## Testing
+To run the tests for the application, use:
+python -m unittest discover -s tests
