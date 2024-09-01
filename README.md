@@ -13,13 +13,13 @@ This project is a network traffic monitoring and alert system built using Flask 
 
 ## Installation
 **Clone the Repository**
-`git clone https://github.com/yourusername/ids_project.git`
+`git clone https://github.com/yourusername/ids_project.git`.
 `cd ids_project`
 
 **Set Up a Virtual Environment (Optional but recommended):**
 `python -m venv venv`
 `source venv/bin/activate`
-# On Windows, use `venv\Scripts\activate`
+### On Windows, use `venv\Scripts\activate`
 
 **Install Dependencies:**
 `pip install -r requirements.txt`
