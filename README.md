@@ -19,7 +19,9 @@ This project is a network traffic monitoring and alert system built using Flask 
 
 **Set Up a Virtual Environment (Optional but recommended):**
 `python -m venv venv`
+
 `source venv/bin/activate`
+
 On Windows, use `venv\Scripts\activate`
 
 **Install Dependencies:**
